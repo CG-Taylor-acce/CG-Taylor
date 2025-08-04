@@ -114,11 +114,16 @@ body {
   overflow: hidden;
 }
 
+/* 限制每个 item 的宽度和居中 */
 .results-carousel .item {
-  margin: 5px;
-  overflow: hidden;
-  padding: 20px;
-  font-size: 0;
+  max-width: 500px;
+  /* 图片最大宽度，比如 500px，可调 */
+  margin: 0 auto;
+  /* 居中每个 item */
+  padding: 10px 0;
+  /* 图片上下间距 */
+  text-align: center;
+  /* 保证字幕居中 */
 }
 
 .results-carousel video {

@@ -43,6 +43,24 @@
   <script src="static/js/bulma-carousel.min.js"></script>
   <script src="static/js/bulma-slider.min.js"></script>
   <script src="static/js/index.js"></script>
+  <style>
+     body {
+      margin: 0;
+      padding: 0;
+    }
+    .image-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 20px 400px; /* 上下 20px，左右 40px 的内边距 */
+      box-sizing: border-box;
+    }
+    .image-row img {
+      width: 32%;
+      height: auto;
+      display: block;
+    }
+  </style>
 </head>
 <body>
 
@@ -52,16 +70,21 @@
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-            <h1 class="title is-1 publication-title">Academic Project Page</h1>
+            <h1 class="title is-1 publication-title">Forecasting When to Forecast: Accelerating Diffusion Models with
+            Confidence-Gated Taylor</h1>
             <div class="is-size-5 publication-authors">
               <!-- Paper authors -->
               <span class="author-block">
-                <a href="FIRST AUTHOR PERSONAL LINK" target="_blank">First Author</a><sup>*</sup>,</span>
+                <a href="FIRST AUTHOR PERSONAL LINK" target="_blank">Xiaoliu Guan</a><sup>*</sup>,</span>
                 <span class="author-block">
                   <a href="SECOND AUTHOR PERSONAL LINK" target="_blank">Second Author</a><sup>*</sup>,</span>
                   <span class="author-block">
-                    <a href="THIRD AUTHOR PERSONAL LINK" target="_blank">Third Author</a>
+                    <a href="THIRD AUTHOR PERSONAL LINK" target="_blank">Third Author</a>,
                   </span>
+                  <span class="author-block">
+                    <a  target="_blank">Third Author</a>,
+                  </span>
+                  <a target="_blank">Third Author</a>
                   </div>
 
                   <div class="is-size-5 publication-authors">
@@ -122,13 +145,22 @@
   </div>
 </section>
 
-
+<div class="image-row">
+  <img src="static/images/ratio_ssim.png" alt="Image 1">
+  <img src="static/images/ratio_psnr.png" alt="Image 2">
+  <img src="static/images/ratio_imagereward.png" alt="Image 3">
+ 
+</div>
+<h2 class="subtitle has-text-centered">
+  Comparison of our method and baselines under different speedup ratios.
+</h2>
 <!-- Teaser video-->
+<!--
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
       <video poster="" id="tree" autoplay controls muted loop height="100%">
-        <!-- Your video here -->
+        
         <source src="static/videos/banner_video.mp4"
         type="video/mp4">
       </video>
@@ -138,6 +170,7 @@
     </div>
   </div>
 </section>
+-->
 <!-- End teaser video -->
 
 <!-- Paper abstract -->
@@ -148,7 +181,21 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ullamcorper tellus sed ante aliquam tempus. Etiam porttitor urna feugiat nibh elementum, et tempor dolor mattis. Donec accumsan enim augue, a vulputate nisi sodales sit amet. Proin bibendum ex eget mauris cursus euismod nec et nibh. Maecenas ac gravida ante, nec cursus dui. Vivamus purus nibh, placerat ac purus eget, sagittis vestibulum metus. Sed vestibulum bibendum lectus gravida commodo. Pellentesque auctor leo vitae sagittis suscipit.
+            Diffusion Transformers (DiTs) have demonstrated remarkable performance in visual generation tasks. However, their low
+            inference speed limits their deployment in low-resource applications. Recent training-free approaches exploit the
+            redundancy of features across timesteps by caching and reusing past representations to accelerate inference. Building on
+            this idea, TaylorSeer instead uses cached features to predict future ones via Taylor expansion. However, its
+            module-level prediction across all transformer blocks (e.g., attention or feedforward modules) requires storing
+            fine-grained intermediate features, leading to notable memory and computation overhead. Moreover, it adopts a fixed
+            caching schedule without considering the varying accuracy of predictions across timesteps, which can lead to degraded
+            outputs when prediction fails. To address these limitations, we propose a novel approach to better leverage Taylor-based
+            acceleration. First, we shift the Taylor prediction target from the module level to the last block level, significantly
+            reducing the number of cached features. Furthermore, observing strong sequential dependencies among Transformer blocks,
+            we propose to use the error between the Taylor-estimated and actual outputs of the first block as an indicator of
+            prediction reliability. If the error is small, we trust the Taylor prediction for the last block; otherwise, we fall
+            back to full computation, thereby enabling a dynamic caching mechanism.
+            Empirical results show that our method achieves a better balance between speed and quality, achieving a 3.17x
+            acceleration on FLUX, 2.36x on DiT, and 4.14x on Wan Video with negligible quality drop.
           </p>
         </div>
       </div>
@@ -162,33 +209,42 @@
 <section class="hero is-small">
   <div class="hero-body">
     <div class="container">
+      <h2 class="title is-3">FLUX Visualization</h2>
       <div id="results-carousel" class="carousel results-carousel">
        <div class="item">
         <!-- Your image here -->
-        <img src="static/images/carousel1.jpg" alt="MY ALT TEXT"/>
+        <img src="static/images/25.png" alt="MY ALT TEXT" />
         <h2 class="subtitle has-text-centered">
-          First image description.
+          A horse riding an astronaut.
         </h2>
       </div>
       <div class="item">
         <!-- Your image here -->
-        <img src="static/images/carousel2.jpg" alt="MY ALT TEXT"/>
+        <img src="static/images/19.png" alt="MY ALT TEXT"/>
         <h2 class="subtitle has-text-centered">
-          Second image description.
+          A yellow book and a red vase.
         </h2>
       </div>
       <div class="item">
         <!-- Your image here -->
-        <img src="static/images/carousel3.jpg" alt="MY ALT TEXT"/>
+        <img src="static/images/194.png" alt="MY ALT TEXT"/>
         <h2 class="subtitle has-text-centered">
-         Third image description.
+        New York Skyline with 'Diffusion' written with fireworks on the sky.
        </h2>
      </div>
+    <div class="item">
+      <!-- Your image here -->
+      <img src="static/images/146.png" alt="MY ALT TEXT" />
+      <h2 class="subtitle has-text-centered">
+        A fluffy baby sloth with a knitted hat trying to figure out a laptop, close up, highly detailed, studio lighting, screen
+        reflecting in its eyes.
+      </h2>
+    </div>
      <div class="item">
       <!-- Your image here -->
-      <img src="static/images/carousel4.jpg" alt="MY ALT TEXT"/>
+      <img src="static/images/46.png" alt="MY ALT TEXT"/>
       <h2 class="subtitle has-text-centered">
-        Fourth image description.
+        One cat and two dogs sitting on the grass.
       </h2>
     </div>
   </div>
@@ -198,20 +254,57 @@
 <!-- End image carousel -->
 
 
+<!-- <img src="static/images/flux_vis_1.jpg"
+  style="display: block; max-width: 100%; height: auto; border: none; margin: 0 auto;" /> -->
+<section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container">
+      
+      
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
 
+          <div class=>
+           
+            <img src="static/images/flux_vis_1.jpg" alt="Image 1">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Youtube video -->
+<section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container">
+      <!-- Paper video. -->
+      <h2 class="title is-3">DiT Visualization</h2>
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          
+          <div class=>
+            <!-- Youtube embed code here -->
+            <img src="static/images/dit_vis.png" alt="Image 1">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End youtube video -->
 
 <!-- Youtube video -->
 <section class="hero is-small is-light">
   <div class="hero-body">
     <div class="container">
       <!-- Paper video. -->
-      <h2 class="title is-3">Video Presentation</h2>
+      <h2 class="title is-3">Wan Visualization</h2>
       <div class="columns is-centered has-text-centered">
         <div class="column is-four-fifths">
-          
-          <div class="publication-video">
+
+          <div class=>
             <!-- Youtube embed code here -->
-            <iframe src="https://www.youtube.com/embed/JkaxUblCGz0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            <img src="static/images/vis_wan.jpg" alt="Image 1">
           </div>
         </div>
       </div>
@@ -225,27 +318,37 @@
 <section class="hero is-small">
   <div class="hero-body">
     <div class="container">
-      <h2 class="title is-3">Another Carousel</h2>
+      <!-- <h2 class="title is-3">Video Presetation</h2> -->
       <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-video3">
+          <video poster="" id="video3" autoplay controls muted loop height="100%">\
+            <!-- Your video file here -->
+            <source
+              src="static/videos/A tropical beach at sunrise, with palm trees and crystal-clear water in the foreground-2.mp4"
+              type="video/mp4">
+          </video>
+        </div>
         <div class="item item-video1">
           <video poster="" id="video1" autoplay controls muted loop height="100%">
             <!-- Your video file here -->
-            <source src="static/videos/carousel1.mp4"
+            <source src="static/videos/a boat-4.mp4"
             type="video/mp4">
           </video>
         </div>
         <div class="item item-video2">
           <video poster="" id="video2" autoplay controls muted loop height="100%">
             <!-- Your video file here -->
-            <source src="static/videos/carousel2.mp4"
+            <source src="static/videos/A fat rabbit wearing a purple robe walking through a fantasy landscape.-0.mp4"
             type="video/mp4">
           </video>
         </div>
+        
         <div class="item item-video3">
           <video poster="" id="video3" autoplay controls muted loop height="100%">\
             <!-- Your video file here -->
-            <source src="static/videos/carousel3.mp4"
-            type="video/mp4">
+            <source
+              src="static/videos/A cute fluffy panda eating Chinese food in a restaurant-1.mp4"
+              type="video/mp4">
           </video>
         </div>
       </div>
@@ -260,7 +363,7 @@
 
 
 <!-- Paper poster -->
-<section class="hero is-small is-light">
+<!-- <section class="hero is-small is-light">
   <div class="hero-body">
     <div class="container">
       <h2 class="title">Poster</h2>
@@ -270,7 +373,7 @@
         
       </div>
     </div>
-  </section>
+  </section> -->
 <!--End paper poster -->
 
 
